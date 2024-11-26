@@ -1,10 +1,25 @@
 package org.northcoders.input;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
-class InstructionParserTest {
+import java.util.LinkedList;
+import java.util.Queue;
 
-    @org.junit.jupiter.api.Test
-    void parseInstructions() {
+import static org.junit.Assert.assertEquals;
+
+public class InstructionParserTest {
+
+    @Test
+    @DisplayName("Parse instructions returns queue of instruction enums equivalent to string passed")
+    public void parseInstructions() {
+        InstructionParser instructionParser = new InstructionParser();
+        Queue<Instruction> expectedResult = new LinkedList<>();
+
+        expectedResult.add(Instruction.L);
+        expectedResult.add(Instruction.R);
+        expectedResult.add(Instruction.M);
+
+        assertEquals(expectedResult, instructionParser.parseInstructions("LRM"));
     }
 }
