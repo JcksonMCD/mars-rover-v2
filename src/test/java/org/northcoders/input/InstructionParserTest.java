@@ -84,4 +84,12 @@ public class InstructionParserTest {
         assertThrows(IllegalArgumentException.class, () -> instructionParser.parseInstructions(null));
     }
 
+    @Test
+    @DisplayName("Parse instructions throws error if passed empty string")
+    public void parseInstructionsThrowsExceptionIfPassedEmptyString() {
+        InstructionParser instructionParser = new InstructionParser();
+
+        assertThrows(IllegalArgumentException.class, () -> instructionParser.parseInstructions(" "));
+    }
+
 }
