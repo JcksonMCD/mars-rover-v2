@@ -7,6 +7,10 @@ import java.util.Queue;
 
 public class InstructionParser {
 
+    private boolean isValidInstructionString(){
+        return false;
+    }
+
     public Queue<Instruction> parseInstructions(String instructionsInput){
         Queue<Instruction> parsedInstructions = new LinkedList<>();
 

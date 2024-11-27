@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class InstructionParserTest {
 
@@ -50,4 +51,5 @@ public class InstructionParserTest {
 
         assertEquals(expectedResult, instructionParser.parseInstructions("L R M"));
     }
+
 }
