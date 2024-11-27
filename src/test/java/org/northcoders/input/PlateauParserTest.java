@@ -34,9 +34,22 @@ class PlateauParserTest {
         Plateau expectedOutput = new Plateau(5, 5);
 
         assertAll(
-                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput(" 5  5")),
-                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput("5  5 ")),
-                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput(" 5  5 "))
+                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput("5 5 ")),
+                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput(" 5 5")),
+                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput(" 5 5 "))
+        );
+
+    }
+
+    @Test
+    @DisplayName("Incorrect format for input throws IllegalArgumentException.")
+    void parsePlateauInputWithIncorrectInputThrowsException() {
+        PlateauParser plateauParser = new PlateauParser();
+
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("Z Z")),
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("5 Z")),
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("5 5 5"))
         );
 
     }
