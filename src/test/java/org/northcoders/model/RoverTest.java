@@ -52,6 +52,43 @@ class RoverTest {
     }
 
     @Test
-    void turnLeft() {
+    @DisplayName("Turn left method alters facing field from N to W")
+    void turnLeftNorthToWest() {
+        Rover rover = new Rover(new Position(5,5, CompassDirection.N));
+
+        rover.turnLeft();
+
+        assertEquals(CompassDirection.W, rover.getPosition().getFacing());
     }
+
+    @Test
+    @DisplayName("Turn left method alters facing field from E to N")
+    void turnRightEastToNorth() {
+        Rover rover = new Rover(new Position(5,5, CompassDirection.E));
+
+        rover.turnRight();
+
+        assertEquals(CompassDirection.N, rover.getPosition().getFacing());
+    }
+
+    @Test
+    @DisplayName("Turn left method alters facing field from S to E")
+    void turnLeftSouthToEast() {
+        Rover rover = new Rover(new Position(5,5, CompassDirection.S));
+
+        rover.turnRight();
+
+        assertEquals(CompassDirection.E, rover.getPosition().getFacing());
+    }
+
+    @Test
+    @DisplayName("Turn left method alters facing field from W to S")
+    void turnLeftEastToWest() {
+        Rover rover = new Rover(new Position(5,5, CompassDirection.W));
+
+        rover.turnLeft();
+
+        assertEquals(CompassDirection.S, rover.getPosition().getFacing());
+    }
+
 }
