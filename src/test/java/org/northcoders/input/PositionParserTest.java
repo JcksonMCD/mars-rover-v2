@@ -35,4 +35,18 @@ class PositionParserTest {
 
         assertEquals(expectedOutput, positionParser.parseStartingPosition("5 5  n"));
     }
+
+    @Test
+    @DisplayName("Parse starting position throws an error if format of int int string equivalent of a compass direction isn't used.")
+    void parseStartingPositionThrowsErrorWhenInputDoesNotFollowRequestedFormat() {
+        PositionParser positionParser = new PositionParser();
+
+        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 n  n"));
+        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5 Z"));
+        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5 5"));
+        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5"));
+        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("N"));
+        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition(""));
+        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition(" "));
+    }
 }
