@@ -8,7 +8,7 @@ import java.util.Queue;
 public class InstructionParser {
 
     public Queue<Instruction> parseInstructions(String instructionsInput){
-        if (instructionsInput == null) throw new IllegalArgumentException();
+        if (instructionsInput == null) throw new IllegalArgumentException("Input string cannot be null");
 
         Queue<Instruction> parsedInstructions = new LinkedList<>();
 
