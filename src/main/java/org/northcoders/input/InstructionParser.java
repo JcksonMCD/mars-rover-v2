@@ -8,6 +8,8 @@ import java.util.Queue;
 public class InstructionParser {
 
     public Queue<Instruction> parseInstructions(String instructionsInput){
+        if (instructionsInput == null) throw new IllegalArgumentException();
+
         Queue<Instruction> parsedInstructions = new LinkedList<>();
 
         for (String instruction : instructionsInput.replaceAll(" ", "").split("")){
