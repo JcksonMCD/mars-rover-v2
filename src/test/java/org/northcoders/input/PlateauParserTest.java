@@ -53,4 +53,17 @@ class PlateauParserTest {
         );
 
     }
+
+    @Test
+    @DisplayName("Negative input throws IllegalArgumentException.")
+    void parsePlateauInputThrowsExceptionIfInputsAreNegative() {
+        PlateauParser plateauParser = new PlateauParser();
+
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("-1 -1")),
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("5 -1")),
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("-1 5"))
+        );
+
+    }
 }
