@@ -61,11 +61,19 @@ public class InstructionParserTest {
     }
 
     @Test
-    @DisplayName("Parse instructions throws error if passed letters that are not L/M/R")
-    public void parseInstructionsPrintsStatementIfPassedIncorrectLetters() {
+    @DisplayName("Parse instructions throws error if passed letter that is not L/M/R")
+    public void parseInstructionsPrintsStatementIfPassedIncorrectLetter() {
         InstructionParser instructionParser = new InstructionParser();
 
         assertThrows(IllegalArgumentException.class, () -> instructionParser.parseInstructions("Z"));
+    }
+
+    @Test
+    @DisplayName("Parse instructions throws error if passed letters that are not L/M/R in a longer string")
+    public void parseInstructionsPrintsStatementIfPassedIncorrectLetterInALongerString() {
+        InstructionParser instructionParser = new InstructionParser();
+
+        assertThrows(IllegalArgumentException.class, () -> instructionParser.parseInstructions("RRRRLZM"));
     }
 
 }
