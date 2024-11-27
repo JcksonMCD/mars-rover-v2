@@ -63,10 +63,10 @@ class RoverTest {
 
     @Test
     @DisplayName("Turn left method alters facing field from E to N")
-    void turnRightEastToNorth() {
+    void turnLeftEastToNorth() {
         Rover rover = new Rover(new Position(5,5, CompassDirection.E));
 
-        rover.turnRight();
+        rover.turnLeft();
 
         assertEquals(CompassDirection.N, rover.getPosition().getFacing());
     }
@@ -76,7 +76,7 @@ class RoverTest {
     void turnLeftSouthToEast() {
         Rover rover = new Rover(new Position(5,5, CompassDirection.S));
 
-        rover.turnRight();
+        rover.turnLeft();
 
         assertEquals(CompassDirection.E, rover.getPosition().getFacing());
     }

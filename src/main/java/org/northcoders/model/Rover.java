@@ -24,7 +24,12 @@ public class Rover implements Driveable{
 
     @Override
     public void turnLeft() {
-
+        switch (position.getFacing()){
+            case N -> position.setFacing(CompassDirection.W);
+            case E -> position.setFacing(CompassDirection.N);
+            case S -> position.setFacing(CompassDirection.E);
+            case W -> position.setFacing(CompassDirection.S);
+        }
     }
 
     public Position getPosition() {
