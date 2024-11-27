@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class InstructionParserTest {
 
     @Test
-    @DisplayName("Parse instructions returns queue of instruction enums equivalent to string passed")
+    @DisplayName("Parse instructions returns queue of instruction enums equivalent to string passed in")
     public void parseInstructions() {
         InstructionParser instructionParser = new InstructionParser();
         Queue<Instruction> expectedResult = new LinkedList<>();
@@ -22,5 +22,18 @@ public class InstructionParserTest {
         expectedResult.add(Instruction.M);
 
         assertEquals(expectedResult, instructionParser.parseInstructions("LRM"));
+    }
+
+    @Test
+    @DisplayName("Parse instructions returns queue of instruction enums equivalent to lower case string passed in")
+    public void parseInstructionsFromLowerCase() {
+        InstructionParser instructionParser = new InstructionParser();
+        Queue<Instruction> expectedResult = new LinkedList<>();
+
+        expectedResult.add(Instruction.L);
+        expectedResult.add(Instruction.R);
+        expectedResult.add(Instruction.M);
+
+        assertEquals(expectedResult, instructionParser.parseInstructions("lrm"));
     }
 }
