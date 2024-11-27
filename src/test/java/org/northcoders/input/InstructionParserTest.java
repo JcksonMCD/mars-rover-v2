@@ -92,4 +92,12 @@ public class InstructionParserTest {
         assertThrows(IllegalArgumentException.class, () -> instructionParser.parseInstructions(" "));
     }
 
+    @Test
+    @DisplayName("Parse instructions throws error if passed a string with only spaces")
+    public void parseInstructionsThrowsExceptionIfPassedStringWithOnlySpaces() {
+        InstructionParser instructionParser = new InstructionParser();
+
+        assertThrows(IllegalArgumentException.class, () -> instructionParser.parseInstructions("   "));
+    }
+
 }
