@@ -64,6 +64,17 @@ class PlateauParserTest {
                 () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("5 -1")),
                 () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("-1 5"))
         );
+    }
 
+    @Test
+    @DisplayName("Inputs with value zero throw IllegalArgumentException.")
+    void parsePlateauInputThrowsExceptionIfInputsAreZero() {
+        PlateauParser plateauParser = new PlateauParser();
+
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("0 0")),
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("5 0")),
+                () -> assertThrows(IllegalArgumentException.class, () -> plateauParser.parsePlateauInput("0 5"))
+        );
     }
 }
