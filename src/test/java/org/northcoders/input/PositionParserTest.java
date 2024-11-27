@@ -2,6 +2,7 @@ package org.northcoders.input;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.northcoders.model.CompassDirection;
 import org.northcoders.model.Position;
 
@@ -41,12 +42,16 @@ class PositionParserTest {
     void parseStartingPositionThrowsErrorWhenInputDoesNotFollowRequestedFormat() {
         PositionParser positionParser = new PositionParser();
 
-        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 n  n"));
-        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5 Z"));
-        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5 5"));
-        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5"));
-        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("N"));
-        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition(""));
-        assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition(" "));
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 N  N")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5N  N")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("555   N")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5 Z")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5 5")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("5 5")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("N")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition("")),
+                () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition(" "))
+        );
     }
 }
