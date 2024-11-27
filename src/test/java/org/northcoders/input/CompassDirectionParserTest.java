@@ -15,9 +15,9 @@ class CompassDirectionParserTest {
 
         assertAll(
                 () -> assertEquals(CompassDirection.N, directionParser.compassDirectionParser("N")),
-                () -> assertEquals(CompassDirection.N, directionParser.compassDirectionParser("E")),
-                () -> assertEquals(CompassDirection.N, directionParser.compassDirectionParser("S")),
-                () -> assertEquals(CompassDirection.N, directionParser.compassDirectionParser("W"))
+                () -> assertEquals(CompassDirection.E, directionParser.compassDirectionParser("E")),
+                () -> assertEquals(CompassDirection.S, directionParser.compassDirectionParser("S")),
+                () -> assertEquals(CompassDirection.W, directionParser.compassDirectionParser("W"))
         );
     }
 }
