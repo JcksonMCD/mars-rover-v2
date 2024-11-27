@@ -2,6 +2,7 @@ package org.northcoders.input;
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.northcoders.model.Instruction;
 
 import java.util.LinkedList;
 import java.util.Queue;

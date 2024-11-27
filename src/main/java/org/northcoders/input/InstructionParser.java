@@ -1,6 +1,7 @@
 package org.northcoders.input;
 
-import java.util.Arrays;
+import org.northcoders.model.Instruction;
+
 import java.util.Queue;
 
 public class InstructionParser {
