@@ -10,7 +10,8 @@ public class PlateauParser {
     }
 
     public Plateau parsePlateauInput(String plateauInput){
-        if (!isValidPlateauFormat(plateauInput)) throw new IllegalArgumentException();
+        if (!isValidPlateauFormat(plateauInput)) throw new IllegalArgumentException(
+                "Invalid format: You must input two numbers separated by a space. Neither number can be negative or zero.");
 
         String[] seperatedXandY = plateauInput.trim().split("\\s+");
 
