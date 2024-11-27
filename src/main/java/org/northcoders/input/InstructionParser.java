@@ -10,7 +10,7 @@ public class InstructionParser {
     public Queue<Instruction> parseInstructions(String instructionsInput){
         Queue<Instruction> parsedInstructions = new LinkedList<>();
 
-        for (String instruction : instructionsInput.split("")){
+        for (String instruction : instructionsInput.replaceAll(" ", "").split("")){
             parsedInstructions.add(Instruction.valueOf(instruction.toUpperCase()));
         }
 
