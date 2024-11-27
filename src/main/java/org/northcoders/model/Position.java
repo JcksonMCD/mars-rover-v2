@@ -1,4 +1,4 @@
 package org.northcoders.model;
 
-public record Position() {
+public record Position(int x, int y, CompassDirection facing) {
 }
