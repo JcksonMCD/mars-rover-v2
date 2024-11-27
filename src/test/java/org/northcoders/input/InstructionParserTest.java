@@ -14,12 +14,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 public class InstructionParserTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
 
     @Test
     @DisplayName("Parse instructions returns queue of instruction enums equivalent to string passed in")
