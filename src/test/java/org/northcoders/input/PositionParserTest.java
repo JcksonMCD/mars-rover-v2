@@ -54,4 +54,18 @@ class PositionParserTest {
                 () -> assertThrows(IllegalArgumentException.class, () -> positionParser.parseStartingPosition(" "))
         );
     }
+
+    @Test
+    @DisplayName("Parse starting position is not impacted by whitespace inconsistencies.")
+    void parseStartingPositionIsNotImpactedByWhitespace() {
+        PositionParser positionParser = new PositionParser();
+        Position expectedOutput = new Position(5 , 5, CompassDirection.N);
+
+        assertAll(
+                () -> assertEquals(expectedOutput, positionParser.parseStartingPosition("5  5 N")),
+                () -> assertEquals(expectedOutput, positionParser.parseStartingPosition("5 5  N")),
+                () -> assertEquals(expectedOutput, positionParser.parseStartingPosition(" 5 5 N")),
+                () -> assertEquals(expectedOutput, positionParser.parseStartingPosition("5 5 N "))
+        );
+    }
 }
