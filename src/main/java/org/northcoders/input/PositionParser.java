@@ -10,7 +10,7 @@ public class PositionParser {
 
         int x = Integer.parseInt(splitPositionValues[0]);
         int y = Integer.parseInt(splitPositionValues[1]);
-        CompassDirection facing = CompassDirection.valueOf(splitPositionValues[2]);
+        CompassDirection facing = CompassDirection.valueOf(splitPositionValues[2].toUpperCase());
 
         return new Position(x, y, facing);
     }
