@@ -5,8 +5,14 @@ import org.northcoders.model.Plateau;
 
 public class PlateauParser {
 
+    private boolean isValidPlateauFormat(String plateauInput){
+        return plateauInput.trim().matches("^\\d+\\s+\\d+");
+    }
+
     public Plateau parsePlateauInput(String plateauInput){
-        String[] seperatedXandY = plateauInput.trim().split("\s+");
+        if (!isValidPlateauFormat(plateauInput)) throw new IllegalArgumentException();
+
+        String[] seperatedXandY = plateauInput.trim().split("\\s+");
 
         int x = Integer.parseInt(seperatedXandY[0]);
         int y = Integer.parseInt(seperatedXandY[1]);
