@@ -68,4 +68,5 @@ class PositionParserTest {
                 () -> assertEquals(expectedOutput, positionParser.parseStartingPosition("5 5 N "))
         );
     }
+
 }

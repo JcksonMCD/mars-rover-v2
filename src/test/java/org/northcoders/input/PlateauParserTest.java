@@ -26,4 +26,18 @@ class PlateauParserTest {
 
         assertEquals(expectedOutput, plateauParser.parsePlateauInput("5  5"));
     }
+
+    @Test
+    @DisplayName("When provided with two ints with trailing whitespace a plateau of that size is returned.")
+    void parsePlateauInputNotAffectedByTrailingWhitespace() {
+        PlateauParser plateauParser = new PlateauParser();
+        Plateau expectedOutput = new Plateau(5, 5);
+
+        assertAll(
+                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput(" 5  5")),
+                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput("5  5 ")),
+                () -> assertEquals(expectedOutput, plateauParser.parsePlateauInput(" 5  5 "))
+        );
+
+    }
 }

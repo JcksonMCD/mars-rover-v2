@@ -6,10 +6,10 @@ import org.northcoders.model.Plateau;
 public class PlateauParser {
 
     public Plateau parsePlateauInput(String plateauInput){
-        String[] seperatedXandY = plateauInput.split("\s+");
+        String[] separatedXandY = plateauInput.trim().split("\s+");
 
-        int x = Integer.parseInt(seperatedXandY[0]);
-        int y = Integer.parseInt(seperatedXandY[1]);
+        int x = Integer.parseInt(separatedXandY[0]);
+        int y = Integer.parseInt(separatedXandY[1]);
 
         return new Plateau(x, y);
     }
