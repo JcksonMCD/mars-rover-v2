@@ -6,7 +6,7 @@ import org.northcoders.model.Position;
 public class PositionParser {
 
     public Position parseStartingPosition(String positionInput){
-        String[] splitPositionValues = positionInput.split(" ");
+        String[] splitPositionValues = positionInput.replaceAll(" ", "").split("");
 
         int x = Integer.parseInt(splitPositionValues[0]);
         int y = Integer.parseInt(splitPositionValues[1]);
