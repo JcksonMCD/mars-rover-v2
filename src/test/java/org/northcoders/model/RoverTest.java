@@ -38,6 +38,16 @@ class RoverTest {
     }
 
     @Test
+    @DisplayName("When facing is West move method changes X by -1")
+    void moveWest() {
+        Rover rover = new Rover(new Position(1,1, CompassDirection.W));
+
+        rover.move();
+
+        assertEquals(0, rover.getPosition().getX());
+    }
+
+    @Test
     @DisplayName("Turn right method alters facing field from N to E")
     void turnRightNorthToEast() {
         Rover rover = new Rover(new Position(5,5, CompassDirection.N));
