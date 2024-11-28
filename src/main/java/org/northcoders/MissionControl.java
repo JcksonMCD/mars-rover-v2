@@ -40,4 +40,8 @@ public class MissionControl {
         }
         return true;
     }
+
+    public boolean isPositionInPlateauBounds(Position position){
+        return false;
+    }
 }
