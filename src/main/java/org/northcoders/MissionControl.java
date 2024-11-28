@@ -1,6 +1,7 @@
 package org.northcoders;
 
 import org.northcoders.model.Plateau;
+import org.northcoders.model.Position;
 import org.northcoders.model.Rover;
 
 import java.util.ArrayList;
@@ -28,5 +29,9 @@ public class MissionControl {
 
     public void setRovers(ArrayList<Rover> rovers) {
         this.rovers = rovers;
+    }
+
+    public boolean isPositionFree(Position position){
+        return false;
     }
 }
