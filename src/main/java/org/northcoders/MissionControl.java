@@ -1,10 +1,12 @@
 package org.northcoders;
 
+import org.northcoders.model.Instruction;
 import org.northcoders.model.Plateau;
 import org.northcoders.model.Position;
 import org.northcoders.model.Rover;
 
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class MissionControl {
     private Plateau plateau;
@@ -25,6 +27,10 @@ public class MissionControl {
 
     public ArrayList<Rover> getRovers() {
         return rovers;
+    }
+
+    public void executeRoverInstructions(Queue<Instruction> instructions, Rover rover){
+
     }
 
     public void addRover(Rover rover) {

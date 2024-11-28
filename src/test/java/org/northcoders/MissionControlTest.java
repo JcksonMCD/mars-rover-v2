@@ -138,4 +138,9 @@ class MissionControlTest {
 
         assertThrows(IllegalArgumentException.class, () -> missionControl.addRover(new Rover(new Position(0, 0, E))));
     }
+
+    @Test
+    @DisplayName("Executes rover instructions")
+    void executeRoverInstructions() {
+    }
 }
