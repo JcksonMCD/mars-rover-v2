@@ -15,7 +15,16 @@ class RoverTest {
         rover.move();
 
         assertEquals(2, rover.getPosition().getY());
+    }
 
+    @Test
+    @DisplayName("When facing is East move method changes X by +1")
+    void moveEast() {
+        Rover rover = new Rover(new Position(1,1, CompassDirection.E));
+
+        rover.move();
+
+        assertEquals(2, rover.getPosition().getX());
     }
 
     @Test
