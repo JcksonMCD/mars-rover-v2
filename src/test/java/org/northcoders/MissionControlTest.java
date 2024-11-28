@@ -118,4 +118,14 @@ class MissionControlTest {
 
         assertThrows(IllegalArgumentException.class, () -> missionControl.addRover(new Rover(new Position(6, 6, N))));
     }
+
+    @Test
+    @DisplayName("Add rover throws exception if rover position is taken")
+    void addRoverThrowsExceptionWhenRoverPositionIsTaken() {
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(new Rover(new Position(0, 0, N)));
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        assertThrows(IllegalArgumentException.class, () -> missionControl.addRover(new Rover(new Position(0, 0, N))));
+    }
 }
