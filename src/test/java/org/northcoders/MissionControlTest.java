@@ -184,4 +184,25 @@ class MissionControlTest {
         assertEquals(1, missionControl.getRovers().getFirst().getPosition().getY());
     }
 
+    @Test
+    @DisplayName("Executes rover instructions executes queue of instruction")
+    void executeRoverInstructions() {
+        Queue<Instruction> instructions = new LinkedList<>();
+        instructions.add(M);
+        instructions.add(R);
+        instructions.add(M);
+        instructions.add(L);
+
+        Rover rover = new Rover(new Position(0, 0, N));
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(rover);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        missionControl.executeRoverInstructions(instructions, rover);
+
+        assertEquals(1, missionControl.getRovers().getFirst().getPosition().getY());
+        assertEquals(1, missionControl.getRovers().getFirst().getPosition().getX());
+        assertEquals(N, missionControl.getRovers().getFirst().getPosition().getFacing());
+    }
+
 }
