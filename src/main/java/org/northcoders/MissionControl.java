@@ -32,6 +32,12 @@ public class MissionControl {
     }
 
     public boolean isPositionFree(Position position){
-        return false;
+        for (Rover rover : rovers){
+            if (rover.getPosition().getX() == position.getX()
+                    && rover.getPosition().getY() == position.getY()){
+                return false;
+            }
+        }
+        return true;
     }
 }
