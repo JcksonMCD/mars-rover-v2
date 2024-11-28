@@ -44,4 +44,14 @@ class MissionControlTest {
 
         assertFalse(missionControl.isPositionFree(new Position(0, 0, E)));
     }
+
+    @Test
+    @DisplayName("Is position free returns true when X is taken but Y is free")
+    void isPositionFreeReturnsTrueWhenYIsFree() {
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(new Rover(new Position(0, 0, N)));
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
+
+        assertTrue(missionControl.isPositionFree(new Position(0, 1, N)));
+    }
 }
