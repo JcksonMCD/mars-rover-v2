@@ -219,5 +219,20 @@ class MissionControlTest {
         assertThrows(IllegalArgumentException.class, () -> missionControl.executeRoverInstructions(instructions, rover));
     }
 
+    @Test
+    @DisplayName("Executes rover instructions throws error if rover moves into other rover")
+    void executeRoverInstructionsThrowsErrorIfRoverMovesIntoOtherRover() {
+        Queue<Instruction> instructions = new LinkedList<>();
+        instructions.add(M);
+
+        Rover rover = new Rover(new Position(5, 4, N));
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(rover);
+        rovers.add(new Rover(new Position(5, 5, N)));
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        assertThrows(IllegalArgumentException.class, () -> missionControl.executeRoverInstructions(instructions, rover));
+    }
+
 
 }
