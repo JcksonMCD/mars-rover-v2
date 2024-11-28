@@ -2,16 +2,16 @@ package org.northcoders;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.northcoders.model.Instruction;
 import org.northcoders.model.Plateau;
 import org.northcoders.model.Position;
 import org.northcoders.model.Rover;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.northcoders.model.CompassDirection.E;
-import static org.northcoders.model.CompassDirection.N;
+import static org.northcoders.model.CompassDirection.*;
+import static org.northcoders.model.Instruction.*;
 
 class MissionControlTest {
 
@@ -140,7 +140,48 @@ class MissionControlTest {
     }
 
     @Test
-    @DisplayName("Executes rover instructions")
-    void executeRoverInstructions() {
+    @DisplayName("Executes rover instructions executes single instruction: L")
+    void executeRoverInstructionL() {
+        Queue<Instruction> instructions = new LinkedList<>();
+        instructions.add(L);
+        Rover rover = new Rover(new Position(0, 0, N));
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(rover);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        missionControl.executeRoverInstructions(instructions, rover);
+
+        assertEquals(W, missionControl.getRovers().getFirst().getPosition().getFacing());
     }
+
+    @Test
+    @DisplayName("Executes rover instructions executes single instruction: R")
+    void executeRoverInstructionR() {
+        Queue<Instruction> instructions = new LinkedList<>();
+        instructions.add(R);
+        Rover rover = new Rover(new Position(0, 0, N));
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(rover);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        missionControl.executeRoverInstructions(instructions, rover);
+
+        assertEquals(E, missionControl.getRovers().getFirst().getPosition().getFacing());
+    }
+
+    @Test
+    @DisplayName("Executes rover instructions executes single instruction: M")
+    void executeRoverInstructionM() {
+        Queue<Instruction> instructions = new LinkedList<>();
+        instructions.add(M);
+        Rover rover = new Rover(new Position(0, 0, N));
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(rover);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        missionControl.executeRoverInstructions(instructions, rover);
+
+        assertEquals(1, missionControl.getRovers().getFirst().getPosition().getY());
+    }
+
 }

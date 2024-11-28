@@ -30,7 +30,13 @@ public class MissionControl {
     }
 
     public void executeRoverInstructions(Queue<Instruction> instructions, Rover rover){
-
+        while (!instructions.isEmpty()){
+            switch (instructions.poll()){
+                case L -> rover.turnLeft();
+                case R -> rover.turnRight();
+                case M -> rover.move();
+            }
+        }
     }
 
     public void addRover(Rover rover) {
