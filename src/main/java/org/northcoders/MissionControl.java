@@ -34,9 +34,24 @@ public class MissionControl {
             switch (instructions.poll()){
                 case L -> rover.turnLeft();
                 case R -> rover.turnRight();
-                case M -> rover.move();
+                case M -> {
+                    if (isPositionInPlateauBounds(simulateNextMove(rover)) && isPositionFree(simulateNextMove(rover))) {
+                        rover.move();
+                    } else if (!isPositionInPlateauBounds(simulateNextMove(rover))){
+                        throw new IllegalArgumentException("Instruction moves plateau out of bounds: movement stopped");
+                    } else {
+                        throw new IllegalArgumentException("Instruction causes crash: movement stopped");
+                    }
+                }
             }
         }
+    }
+
+    public Position simulateNextMove(Rover rover){
+        int nextX = rover.getPosition().getX() + rover.getPosition().getFacing().incrementX;
+        int nextY = rover.getPosition().getY() + rover.getPosition().getFacing().incrementY;
+
+        return new Position(nextX, nextY, rover.getPosition().getFacing());
     }
 
     public void addRover(Rover rover) {

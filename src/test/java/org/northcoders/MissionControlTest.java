@@ -205,5 +205,19 @@ class MissionControlTest {
         assertEquals(N, missionControl.getRovers().getFirst().getPosition().getFacing());
     }
 
+    @Test
+    @DisplayName("Executes rover instructions throws error if rover moves out of bounds")
+    void executeRoverInstructionsThrowsErrorIfRoverMovesOutOfBounds() {
+        Queue<Instruction> instructions = new LinkedList<>();
+        instructions.add(M);
+
+        Rover rover = new Rover(new Position(5, 5, N));
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(rover);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        assertThrows(IllegalArgumentException.class, () -> missionControl.executeRoverInstructions(instructions, rover));
+    }
+
 
 }
