@@ -27,8 +27,14 @@ public class MissionControl {
         return rovers;
     }
 
-    public void setRovers(ArrayList<Rover> rovers) {
-        this.rovers = rovers;
+    public void addRover(Rover rover) {
+        if (isPositionFree(rover.getPosition()) && isPositionInPlateauBounds(rover.getPosition())){
+            rovers.add(rover);
+        } else if (!isPositionInPlateauBounds(rover.getPosition())){
+            throw new IllegalArgumentException("Rover can not be placed out of plateau bounds");
+        } else {
+            throw new IllegalArgumentException("Position already taken by another rover.");
+        }
     }
 
     public boolean isPositionFree(Position position){
@@ -44,4 +50,6 @@ public class MissionControl {
     public boolean isPositionInPlateauBounds(Position position){
         return !(position.getY() > plateau.maxY() || position.getX() > plateau.maxX());
     }
+
+
 }

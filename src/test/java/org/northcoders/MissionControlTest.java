@@ -96,4 +96,17 @@ class MissionControlTest {
 
         assertFalse(missionControl.isPositionInPlateauBounds(new Position(1, 2, N)));
     }
+
+    @Test
+    @DisplayName("Add rover adds a rover to mission control")
+    void addRover() {
+        ArrayList<Rover> rovers = new ArrayList<>();
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        missionControl.addRover(new Rover(new Position(2, 2, N)));
+
+        assertEquals(missionControl.getRovers().getFirst().getPosition().getFacing(), N);
+        assertEquals(missionControl.getRovers().getFirst().getPosition().getX(), 2);
+        assertEquals(missionControl.getRovers().getFirst().getPosition().getY(), 2);
+    }
 }
