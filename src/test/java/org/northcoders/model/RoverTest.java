@@ -8,7 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class RoverTest {
 
     @Test
-    void move() {
+    @DisplayName("When facing is North move method changes Y by +1")
+    void moveNorth() {
+        Rover rover = new Rover(new Position(1,1, CompassDirection.N));
+
+        rover.move();
+
+        assertEquals(2, rover.getPosition().getY());
+
     }
 
     @Test
