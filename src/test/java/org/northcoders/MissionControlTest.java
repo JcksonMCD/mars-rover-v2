@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.northcoders.model.CompassDirection.E;
 import static org.northcoders.model.CompassDirection.N;
 
 class MissionControlTest {
@@ -32,5 +33,15 @@ class MissionControlTest {
         MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
 
         assertFalse(missionControl.isPositionFree(new Position(0, 0, N)));
+    }
+
+    @Test
+    @DisplayName("Is position free returns false when x and y values are taken even if facing field is different")
+    void isPositionFreeReturnsFalseWhenXAndYAreTaken() {
+        ArrayList<Rover> rovers = new ArrayList<>();
+        rovers.add(new Rover(new Position(0, 0, N)));
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
+
+        assertFalse(missionControl.isPositionFree(new Position(0, 0, E)));
     }
 }
