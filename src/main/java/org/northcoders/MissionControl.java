@@ -42,6 +42,6 @@ public class MissionControl {
     }
 
     public boolean isPositionInPlateauBounds(Position position){
-        return false;
+        return !(position.getY() > plateau.maxY() || position.getX() > plateau.maxX());
     }
 }
