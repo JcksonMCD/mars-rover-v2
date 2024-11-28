@@ -60,7 +60,10 @@ public class MissionControl {
     }
 
     public boolean isPositionInPlateauBounds(Position position){
-        return !(position.getY() > plateau.maxY() || position.getX() > plateau.maxX());
+        return position.getY() <= plateau.maxY()
+                && position.getX() <= plateau.maxX()
+                && position.getX() >= 0
+                && position.getY() >=0 ;
     }
 
 
