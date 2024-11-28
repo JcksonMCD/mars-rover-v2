@@ -9,7 +9,8 @@ public class Rover implements Driveable{
 
     @Override
     public void move() {
-
+        position.setX(position.getX() + position.getFacing().incrementX);
+        position.setY(position.getY() + position.getFacing().incrementY);
     }
 
     @Override
