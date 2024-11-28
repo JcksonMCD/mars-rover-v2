@@ -109,4 +109,13 @@ class MissionControlTest {
         assertEquals(missionControl.getRovers().getFirst().getPosition().getX(), 2);
         assertEquals(missionControl.getRovers().getFirst().getPosition().getY(), 2);
     }
+
+    @Test
+    @DisplayName("Add rover throws exception if rover is out of plateau bounds")
+    void addRoverThrowsExceptionWhenRoverIsOutOfPlateauBounds() {
+        ArrayList<Rover> rovers = new ArrayList<>();
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+
+        assertThrows(IllegalArgumentException.class, () -> missionControl.addRover(new Rover(new Position(6, 6, N))));
+    }
 }
