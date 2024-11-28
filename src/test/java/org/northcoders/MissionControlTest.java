@@ -80,4 +80,12 @@ class MissionControlTest {
 
         assertFalse(missionControl.isPositionInPlateauBounds(new Position(2, 2, N)));
     }
+
+    @Test
+    @DisplayName("Is position in bounds returns false when only X value is out of plateau bounds")
+    void isPositionInPlateauBoundsReturnsFalseWhenOnlyXIsOutOfBounds() {
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1), null);
+
+        assertFalse(missionControl.isPositionInPlateauBounds(new Position(2, 1, N)));
+    }
 }
