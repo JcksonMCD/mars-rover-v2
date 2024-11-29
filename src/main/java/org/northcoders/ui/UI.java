@@ -1,7 +1,10 @@
 package org.northcoders.ui;
 
 import org.northcoders.MissionControl;
+import org.northcoders.input.PlateauParser;
+import org.northcoders.model.Plateau;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -22,6 +25,20 @@ public class UI {
         return State.PLATEAU_SETUP;
     }
 
+    public State setUpPlateau(){
+        while(true){
+            try{
+                System.out.println("Enter the size of your simulated Plateau. Use the format 'X Y': both values must be whole positive numbers.");
+                String input = scanner.nextLine();
+                PlateauParser plateauParser = new PlateauParser();
+                Plateau plateau = plateauParser.parsePlateauInput(input);
 
+                missionControl = new MissionControl(plateau, new ArrayList<>());
+
+            } catch (IllegalArgumentException e){
+                System.out.println((e.getMessage()));
+            }
+        }
+    }
 
 }
