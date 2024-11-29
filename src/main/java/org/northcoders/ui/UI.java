@@ -24,6 +24,22 @@ public class UI {
         scanner = new Scanner(System.in);
     }
 
+    public void start(){
+        while (state != State.END){
+            switch (state){
+                case WELCOME -> state = welcome();
+                case PLATEAU_SETUP -> state = setUpPlateau();
+                case ADD_ROVER -> state = addRover();
+                case GIVE_ROVER_INSTRUCTIONS -> state = inputInstructions();
+            }
+        }
+
+        System.out.println("Rovers finished at locations: ");
+        missionControl.getRovers().forEach(r -> System.out.println(r.getPosition().getX() + " " +
+                + r.getPosition().getY() + " " + r.getPosition().getFacing()));
+        System.out.println("Great job!!");
+    }
+
     public State welcome(){
         System.out.println("WELCOME TO MARS: ");
         System.out.println("It's your first day at Mission Control so you have been given access to a top of the range deploy rover simulator!");
@@ -61,6 +77,7 @@ public class UI {
 
                 Rover rover = new Rover(position);
                 missionControl.addRover(rover);
+                this.currentRover = rover;
 
                 return State.GIVE_ROVER_INSTRUCTIONS;
             } catch (IllegalArgumentException e) {
@@ -83,7 +100,7 @@ public class UI {
                 missionControl.executeRoverInstructions(instructions, this.currentRover);
                 printRoverPosition();
 
-                System.out.println("Do you want to add a new rover. Type Y for yes.");
+                System.out.println("\nDo you want to add a new rover. Type Y for yes.");
                 input = scanner.nextLine();
 
                 return input.equalsIgnoreCase("Y") ? State.ADD_ROVER : State.END;

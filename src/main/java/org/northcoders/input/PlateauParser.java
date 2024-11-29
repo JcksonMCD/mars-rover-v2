@@ -6,7 +6,7 @@ import org.northcoders.model.Plateau;
 public class PlateauParser {
 
     private boolean isValidPlateauFormat(String plateauInput){
-        return plateauInput.trim().matches("^[1-9]+\\s+[1-9]+");
+        return plateauInput.trim().matches("^[1-9][0-9]+\\s+[1-9][0-9]+$");
     }
 
     public Plateau parsePlateauInput(String plateauInput){

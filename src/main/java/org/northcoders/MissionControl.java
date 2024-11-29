@@ -40,7 +40,7 @@ public class MissionControl {
                     } else if (!isPositionInPlateauBounds(simulateNextMove(rover))){
                         throw new IllegalArgumentException("Instruction moves plateau out of bounds: movement stopped");
                     } else {
-                        throw new IllegalArgumentException("Instruction causes crash: movement stopped");
+                        throw new IllegalArgumentException("Instructions cause crash: ABORTED");
                     }
                 }
             }
