@@ -10,11 +10,11 @@ import java.util.Queue;
 
 public class MissionControl {
     private Plateau plateau;
-    private ArrayList<Rover> rovers;
+    private final ArrayList<Rover> rovers;
 
-    public MissionControl(Plateau plateau, ArrayList<Rover> rovers) {
+    public MissionControl(Plateau plateau) {
         this.plateau = plateau;
-        this.rovers = rovers;
+        this.rovers = new ArrayList<>();
     }
 
     public Plateau getPlateau() {

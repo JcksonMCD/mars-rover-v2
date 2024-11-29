@@ -18,9 +18,8 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position free returns true when position is free")
     void isPositionFreeReturnsTrueWhenPositionIsFree() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(new Rover(new Position(0, 0, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
+        missionControl.addRover(new Rover(new Position(0, 0, N)));
 
         assertTrue(missionControl.isPositionFree(new Position(1, 1, N)));
     }
@@ -28,9 +27,8 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position free returns false when position is not free")
     void isPositionFreeReturnsFalseWhenPositionIsNotFree() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(new Rover(new Position(0, 0, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
+        missionControl.addRover(new Rover(new Position(0, 0, N)));
 
         assertFalse(missionControl.isPositionFree(new Position(0, 0, N)));
     }
@@ -38,9 +36,8 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position free returns false when x and y values are taken even if facing field is different")
     void isPositionFreeReturnsFalseWhenXAndYAreTaken() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(new Rover(new Position(0, 0, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
+        missionControl.addRover(new Rover(new Position(0, 0, N)));
 
         assertFalse(missionControl.isPositionFree(new Position(0, 0, E)));
     }
@@ -48,9 +45,8 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position free returns true when X is taken but Y is free")
     void isPositionFreeReturnsTrueWhenYIsFree() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(new Rover(new Position(0, 0, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
+        missionControl.addRover(new Rover(new Position(0, 0, N)));
 
         assertTrue(missionControl.isPositionFree(new Position(0, 1, N)));
     }
@@ -58,9 +54,8 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position free returns true when Y is taken but X is free")
     void isPositionFreeReturnsTrueWhenXIsFree() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(new Rover(new Position(0, 0, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
+        missionControl.addRover(new Rover(new Position(0, 0, N)));
 
         assertTrue(missionControl.isPositionFree(new Position(1, 0, N)));
     }
@@ -68,7 +63,7 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position in bounds returns true when position is within plateau bounds")
     void isPositionInPlateauBoundsReturnsTrueWhenPositionIsInBounds() {
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), null);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
 
         assertTrue(missionControl.isPositionInPlateauBounds(new Position(1, 1, N)));
     }
@@ -76,7 +71,7 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position in bounds returns false when position is out of plateau bounds")
     void isPositionInPlateauBoundsReturnsFalseWhenPositionIsOutOfBounds() {
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), null);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
 
         assertFalse(missionControl.isPositionInPlateauBounds(new Position(2, 2, N)));
     }
@@ -84,7 +79,7 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position in bounds returns false when only X value is out of plateau bounds")
     void isPositionInPlateauBoundsReturnsFalseWhenOnlyXIsOutOfBounds() {
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), null);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
 
         assertFalse(missionControl.isPositionInPlateauBounds(new Position(2, 1, N)));
     }
@@ -92,7 +87,7 @@ class MissionControlTest {
     @Test
     @DisplayName("Is position in bounds returns false when only Y value is out of plateau bounds")
     void isPositionInPlateauBoundsReturnsFalseWhenOnlyYIsOutOfBounds() {
-        MissionControl missionControl = new MissionControl(new Plateau(1, 1), null);
+        MissionControl missionControl = new MissionControl(new Plateau(1, 1));
 
         assertFalse(missionControl.isPositionInPlateauBounds(new Position(1, 2, N)));
     }
@@ -100,8 +95,7 @@ class MissionControlTest {
     @Test
     @DisplayName("Add rover adds a rover to mission control")
     void addRover() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
 
         missionControl.addRover(new Rover(new Position(2, 2, N)));
 
@@ -113,8 +107,7 @@ class MissionControlTest {
     @Test
     @DisplayName("Add rover throws exception if rover is out of plateau bounds")
     void addRoverThrowsExceptionWhenRoverIsOutOfPlateauBounds() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
 
         assertThrows(IllegalArgumentException.class, () -> missionControl.addRover(new Rover(new Position(6, 6, N))));
     }
@@ -122,9 +115,8 @@ class MissionControlTest {
     @Test
     @DisplayName("Add rover throws exception if rover position is taken")
     void addRoverThrowsExceptionWhenRoverPositionIsTaken() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(new Rover(new Position(0, 0, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(new Rover(new Position(0, 0, N)));
 
         assertThrows(IllegalArgumentException.class, () -> missionControl.addRover(new Rover(new Position(0, 0, N))));
     }
@@ -132,9 +124,8 @@ class MissionControlTest {
     @Test
     @DisplayName("Add rover throws exception if rover position is taken even if facing is different")
     void addRoverThrowsExceptionWhenRoverPositionIsTakenEvenIfFacingIsDifferent() {
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(new Rover(new Position(0, 0, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(new Rover(new Position(0, 0, N)));
 
         assertThrows(IllegalArgumentException.class, () -> missionControl.addRover(new Rover(new Position(0, 0, E))));
     }
@@ -144,10 +135,10 @@ class MissionControlTest {
     void executeRoverInstructionL() {
         Queue<Instruction> instructions = new LinkedList<>();
         instructions.add(L);
+
         Rover rover = new Rover(new Position(0, 0, N));
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(rover);
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(rover);
 
         missionControl.executeRoverInstructions(instructions, rover);
 
@@ -159,10 +150,10 @@ class MissionControlTest {
     void executeRoverInstructionR() {
         Queue<Instruction> instructions = new LinkedList<>();
         instructions.add(R);
+
         Rover rover = new Rover(new Position(0, 0, N));
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(rover);
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(rover);
 
         missionControl.executeRoverInstructions(instructions, rover);
 
@@ -174,10 +165,10 @@ class MissionControlTest {
     void executeRoverInstructionM() {
         Queue<Instruction> instructions = new LinkedList<>();
         instructions.add(M);
+
         Rover rover = new Rover(new Position(0, 0, N));
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(rover);
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(rover);
 
         missionControl.executeRoverInstructions(instructions, rover);
 
@@ -194,9 +185,8 @@ class MissionControlTest {
         instructions.add(L);
 
         Rover rover = new Rover(new Position(0, 0, N));
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(rover);
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(rover);
 
         missionControl.executeRoverInstructions(instructions, rover);
 
@@ -212,9 +202,8 @@ class MissionControlTest {
         instructions.add(M);
 
         Rover rover = new Rover(new Position(5, 5, N));
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(rover);
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(rover);
 
         assertThrows(IllegalArgumentException.class, () -> missionControl.executeRoverInstructions(instructions, rover));
     }
@@ -226,10 +215,9 @@ class MissionControlTest {
         instructions.add(M);
 
         Rover rover = new Rover(new Position(5, 4, N));
-        ArrayList<Rover> rovers = new ArrayList<>();
-        rovers.add(rover);
-        rovers.add(new Rover(new Position(5, 5, N)));
-        MissionControl missionControl = new MissionControl(new Plateau(5, 5), rovers);
+        MissionControl missionControl = new MissionControl(new Plateau(5, 5));
+        missionControl.addRover(rover);
+        missionControl.addRover(new Rover(new Position(5, 5, N)));
 
         assertThrows(IllegalArgumentException.class, () -> missionControl.executeRoverInstructions(instructions, rover));
     }

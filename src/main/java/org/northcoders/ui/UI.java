@@ -33,7 +33,7 @@ public class UI {
                 PlateauParser plateauParser = new PlateauParser();
                 Plateau plateau = plateauParser.parsePlateauInput(input);
 
-                missionControl = new MissionControl(plateau, new ArrayList<>());
+                missionControl = new MissionControl(plateau);
 
             } catch (IllegalArgumentException e){
                 System.out.println((e.getMessage()));
