@@ -13,4 +13,6 @@ public class UI {
         state = State.PLATEAU_SETUP;
         scanner = new Scanner(System.in);
     }
+
+
 }
