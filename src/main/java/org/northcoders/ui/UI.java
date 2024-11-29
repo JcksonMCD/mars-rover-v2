@@ -2,7 +2,10 @@ package org.northcoders.ui;
 
 import org.northcoders.MissionControl;
 import org.northcoders.input.PlateauParser;
+import org.northcoders.input.PositionParser;
 import org.northcoders.model.Plateau;
+import org.northcoders.model.Position;
+import org.northcoders.model.Rover;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -39,6 +42,25 @@ public class UI {
 
             } catch (IllegalArgumentException e){
                 System.out.println((e.getMessage()));
+            }
+        }
+    }
+
+    public State addRover(){
+        while (true){
+            try{
+                System.out.println("Enter you rovers starting coordinates. Use the format 'X Y N/E/S/W': Position must be within your plateau bounds.");
+                String input = scanner.nextLine();
+
+                PositionParser positionParser = new PositionParser();
+                Position position = positionParser.parseStartingPosition(input);
+
+                Rover rover = new Rover(position);
+                missionControl.addRover(rover);
+
+                return State.GIVE_ROVER_INSTRUCTIONS;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
