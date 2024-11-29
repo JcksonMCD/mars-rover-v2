@@ -1,19 +1,23 @@
 package org.northcoders.ui;
 
 import org.northcoders.MissionControl;
+import org.northcoders.input.InstructionParser;
 import org.northcoders.input.PlateauParser;
 import org.northcoders.input.PositionParser;
+import org.northcoders.model.Instruction;
 import org.northcoders.model.Plateau;
 import org.northcoders.model.Position;
 import org.northcoders.model.Rover;
 
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class UI {
     private State state;
     private Scanner scanner;
     private MissionControl missionControl;
+    private Rover currentRover;
 
     public UI() {
         state = State.WELCOME;
@@ -63,6 +67,38 @@ public class UI {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public State inputInstructions(){
+        while (true){
+            try {
+                System.out.println("Enter your rover movement instructions. " +
+                        "You are able to use: \n1) 'L' : Rotate rover left " +
+                        "\n2) 'R' : Rotate rover right \n3) 'M' : Move forward one space");
+                String input = scanner.nextLine();
+
+                InstructionParser instructionParser = new InstructionParser();
+                Queue<Instruction> instructions = instructionParser.parseInstructions(input);
+
+                missionControl.executeRoverInstructions(instructions, this.currentRover);
+                printRoverPosition();
+
+                System.out.println("Do you want to add a new rover. Type Y for yes.");
+                input = scanner.nextLine();
+
+                return input.equalsIgnoreCase("Y") ? State.ADD_ROVER : State.END;
+
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void printRoverPosition(){
+        System.out.printf("The current position of your rover is: %d %d %s",
+                currentRover.getPosition().getX(),
+                currentRover.getPosition().getY(),
+                currentRover.getPosition().getFacing());
     }
 
 }
