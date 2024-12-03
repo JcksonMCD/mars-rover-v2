@@ -1,5 +1,8 @@
 package org.northcoders;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.northcoders.model.Instruction;
 import org.northcoders.model.Plateau;
 import org.northcoders.model.Position;
@@ -8,26 +11,12 @@ import org.northcoders.model.Rover;
 import java.util.ArrayList;
 import java.util.Queue;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class MissionControl {
     private Plateau plateau;
     private final ArrayList<Rover> rovers;
-
-    public MissionControl(Plateau plateau) {
-        this.plateau = plateau;
-        this.rovers = new ArrayList<>();
-    }
-
-    public Plateau getPlateau() {
-        return plateau;
-    }
-
-    public void setPlateau(Plateau plateau) {
-        this.plateau = plateau;
-    }
-
-    public ArrayList<Rover> getRovers() {
-        return rovers;
-    }
 
     public void executeRoverInstructions(Queue<Instruction> instructions, Rover rover){
         while (!instructions.isEmpty()){
