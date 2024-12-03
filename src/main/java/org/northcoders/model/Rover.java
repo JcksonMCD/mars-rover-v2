@@ -1,11 +1,14 @@
 package org.northcoders.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class Rover implements Driveable{
     private Position position;
-
-    public Rover(Position position) {
-        this.position = position;
-    }
 
     @Override
     public void move() {
@@ -31,13 +34,5 @@ public class Rover implements Driveable{
             case S -> position.setFacing(CompassDirection.E);
             case W -> position.setFacing(CompassDirection.S);
         }
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 }
